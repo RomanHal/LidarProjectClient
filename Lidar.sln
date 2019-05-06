@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOLibrary", "IOLibrary\IOLibrary.csproj", "{04EEC75C-28F5-4D89-94C0-DD21737B48D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visualisation", "Visualisation\Visualisation.csproj", "{35FE63EE-5479-4AA1-A4E4-74744EA3527F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lidar", "Lidar\Lidar.csproj", "{BC54CE68-114A-4E25-80DC-36DF28068568}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04EEC75C-28F5-4D89-94C0-DD21737B48D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04EEC75C-28F5-4D89-94C0-DD21737B48D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04EEC75C-28F5-4D89-94C0-DD21737B48D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04EEC75C-28F5-4D89-94C0-DD21737B48D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35FE63EE-5479-4AA1-A4E4-74744EA3527F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35FE63EE-5479-4AA1-A4E4-74744EA3527F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35FE63EE-5479-4AA1-A4E4-74744EA3527F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35FE63EE-5479-4AA1-A4E4-74744EA3527F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC54CE68-114A-4E25-80DC-36DF28068568}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC54CE68-114A-4E25-80DC-36DF28068568}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC54CE68-114A-4E25-80DC-36DF28068568}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC54CE68-114A-4E25-80DC-36DF28068568}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8897F787-40E4-4FF6-AF4C-9F74E30C3F57}
+	EndGlobalSection
+EndGlobal
