@@ -4,10 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lidar"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="400">
-    
-    
+        
+    xmlns:viewmodel="clr-namespace:Lidar"  
+
+        Title="MainWindow" Height="350" Width="400">
+
+
+    <Window.Resources>
+        <viewmodel:MainWindowViewModel x:Key="vm"></viewmodel:MainWindowViewModel>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>
@@ -22,7 +28,6 @@
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Menu Width="400"  Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" Height="20" >
             <MenuItem  Header="File" Width="40" VerticalContentAlignment="Center" Background="White">
@@ -33,16 +38,17 @@
             <MenuItem  Header="Help" IsEnabled="False" Width="40">
             </MenuItem>
         </Menu>
-        <ComboBox Grid.Column="0" Grid.Row="1" Padding="10" Margin="10,14,10,6" ItemsSource="{Binding Coms}" 
-                  SelectedItem="{Binding SelectedCom,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+        <ListBox Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" Padding="10" Margin="10,14,10,6" ItemsSource="{Binding Coms}" 
+                SelectedItem="{Binding SelectedCom}" IsSynchronizedWithCurrentItem="True"/>
         <Button Grid.Column="1" Grid.Row="1" Margin="10" Command="{Binding OpenCom}">Open</Button>
-        <Button Grid.Column="2" Grid.Row="1" Margin="10">Refresh</Button>
-        <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding ComStatus}"></TextBlock>
+        <Button Grid.Column="2" Grid.Row="1" Margin="10" Command="{Binding RefreshCom}">Refresh</Button>
+        <TextBlock Grid.Column="0" Grid.Row="4" Text="{Binding ComStatus}"></TextBlock>
         <Button Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" Margin="10" Command="{Binding StartMeasurement}" 
                 CommandParameter="">StartMeasurement</Button>
-        <TextBlock Grid.Column="0"  Grid.Row="3" Margin="10" Text="{Binding MeasuremzxentStatus}"></TextBlock>
+        <TextBlock Grid.Column="1"  Grid.Row="4" Grid.ColumnSpan="2" Margin="10" Text="{Binding MeasurementStatus}"></TextBlock>
 
         <Button Command="{Binding OpenVisualisation}" CommandParameter="None" Grid.Column="1" Grid.ColumnSpan="2" 
-                Grid.Row="6" Margin="10">Visualisation</Button>    
+                Grid.Row="6" Margin="10">Visualisation</Button>
+
     </Grid>
 </Window>

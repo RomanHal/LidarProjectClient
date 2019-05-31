@@ -23,21 +23,30 @@ namespace Lidar
         {
             get => _measurementStatus; set
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(nameof(MeasurementStatus)));
+               
                 _measurementStatus = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(MeasurementStatus)));
             }
         }
         public string ComStatus
         {
             get => _comStatus; set
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(nameof(ComStatus)));
                 _comStatus = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(ComStatus)));
+                
             }
         }
 
-        private string _comStatus = "SAD";
+        private string _comStatus = "";
         private string _measurementStatus = "aaa";
+
+        internal void RefreshComsList()
+        {
+            comPort.RefreshComs();
+            AvalibleComs = comPort.AvaliblePorts;
+        }
+
         private string _selectedPort;
 
         public string SelectedPort { get => _selectedPort; set {
@@ -50,22 +59,20 @@ namespace Lidar
         public ModelMainWindow()
         {
             comPort.ReceiveData = DataReceivedHandler;
+            RefreshComsList();
         }
 
 
 
-        public string[] AvalibleComs => GetComs();
+        public string[] AvalibleComs { get; set; }
 
-        public string[] GetComs()
-        {
-            return comPort.AvaliblePorts();
-        }
+
 
         public void TryMeasure()
         {
             var a = 'a';
             comPort.Send(new byte[] { Convert.ToByte(a) });
-            MeasurementStatus = "Start";
+           // MeasurementStatus = "Start";
         }
 
         public void TryOpenCom()
@@ -82,6 +89,7 @@ namespace Lidar
             if (data.Length == 2)
             {
                 MeasurementStatus = _Started;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(MeasurementStatus)));
             }
             else if (data.Length != 5)
             {

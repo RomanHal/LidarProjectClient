@@ -14,6 +14,7 @@ namespace IOLibrary
         public ComPort()
         {
             port.DataReceived += Port_DataReceived;
+            RefreshComs();
         }
         public bool ConnectToPort(string name,int baudRate)
         {
@@ -32,21 +33,18 @@ namespace IOLibrary
             var bytesToRead = port.BytesToRead;
             var recievedBytes = new byte[bytesToRead] ;
              port.Read(recievedBytes, 0, bytesToRead);
-            //for (int i=0;i<port.BytesToRead;i++)
-            //{
-            //    recievedBytes[i] =(byte) port.ReadByte();
-            //}
-          //  port.DiscardInBuffer();
             ReceiveData(recievedBytes);
         }
-        public string[] AvaliblePorts()
-        {
-            return SerialPort.GetPortNames();
-        }
-        
+        public string[] AvaliblePorts { get; set; }
+
         public void Send(byte[] data)
         {
             port.Write(data,0,data.Length);
+        }
+
+        public void RefreshComs()
+        {
+            AvaliblePorts = SerialPort.GetPortNames();
         }
 
     }
