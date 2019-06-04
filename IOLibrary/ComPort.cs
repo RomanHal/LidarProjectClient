@@ -39,12 +39,32 @@ namespace IOLibrary
 
         public void Send(byte[] data)
         {
-            port.Write(data,0,data.Length);
+            try
+            {
+                port.Write(data, 0, data.Length);
+            }
+            catch (Exception e)
+            {
+                RefreshPort();
+                port.Write(data, 0, data.Length);
+            }
+        }
+
+        private void RefreshPort()
+        {
+            var name = port.PortName;
+            var baudRate = port.BaudRate;
+            port = new SerialPort(name, baudRate);
+            //port.Open();
         }
 
         public void RefreshComs()
         {
             AvaliblePorts = SerialPort.GetPortNames();
+        }
+        public void Close()
+        {
+            
         }
 
     }

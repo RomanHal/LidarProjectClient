@@ -18,5 +18,9 @@ namespace Lidar.Data
         public double X { get; }
         public double Y { get; }
         public double Z { get; }
+        public override string ToString()
+        {
+            return X + ";"+ Y+ ";"+ Z + ";";
+        }
     }
 }

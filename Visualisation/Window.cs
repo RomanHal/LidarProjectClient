@@ -38,6 +38,10 @@ namespace Visualisation
             Matrix4 projection = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 2, Width / (float)Height, 1.0f, 64.0f);
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadMatrix(ref projection);
+            Matrix4 modelview = Matrix4.LookAt(new Vector3(0, 0, 0), new Vector3(0, 5, 0),Vector3.UnitZ);
+
+            GL.MatrixMode(MatrixMode.Modelview);
+            GL.LoadMatrix(ref modelview);
         }
 
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -51,9 +55,9 @@ namespace Visualisation
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            Matrix4 modelview = Matrix4.LookAt(new Vector3(0,5,0), Vector3.Zero, -Vector3.UnitZ);
+            var r = Matrix4.CreateRotationZ(0.001f);
             GL.MatrixMode(MatrixMode.Modelview);
-            GL.LoadMatrix(ref modelview);
+            GL.MultMatrix(ref r);
 
             GL.Begin(PrimitiveType.Points);
 

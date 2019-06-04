@@ -16,14 +16,16 @@ namespace Lidar
         private const string _Started = "Started";
         ComPort comPort = new ComPort();
         DataHandler dataHandler = new DataHandler();
-
+        public IEnumerable<string> GetCords()
+        {
+            return coordsData.Select(x => x.ToString());
+        }
         int packetCounter;
         List<XYZCoordsData> coordsData = new List<XYZCoordsData>();
         public string MeasurementStatus
         {
             get => _measurementStatus; set
             {
-               
                 _measurementStatus = value;
                 PropertyChanged(this, new PropertyChangedEventArgs(nameof(MeasurementStatus)));
             }
@@ -34,12 +36,11 @@ namespace Lidar
             {
                 _comStatus = value;
                 PropertyChanged(this, new PropertyChangedEventArgs(nameof(ComStatus)));
-                
             }
         }
 
         private string _comStatus = "";
-        private string _measurementStatus = "aaa";
+        private string _measurementStatus = "";
 
         internal void RefreshComsList()
         {

@@ -12,9 +12,12 @@ namespace Lidar
 {
     public class MainWindowViewModel : BindableBase
     {
+        public Func<string> SelectPath { get; set; }
+        public Action<string, IEnumerable<string>> SaveAs { get; set; }
         ModelMainWindow _model = new ModelMainWindow();
         public CommandClass OpenVisualisation { get; set; }
         public DelegateCommand RefreshCom { get; set; }
+        public DelegateCommand SaveAsCommand { get; set; }
         public CommandClass StartMeasurement { get; set; }
         public CommandClass OpenCom { get; set; }
         private string _selectedCom;
@@ -31,6 +34,7 @@ namespace Lidar
         public MainWindowViewModel()
         {
             RefreshCom = new DelegateCommand(RefreshComCommand);
+            SaveAsCommand = new DelegateCommand(SaveMethod);
             OpenVisualisation = new CommandClass(VisualiseThis);
             StartMeasurement = new CommandClass(_model.TryMeasure);
             OpenCom = new CommandClass(_model.TryOpenCom);
@@ -58,6 +62,10 @@ namespace Lidar
         public void VisualiseThis()
         {
             _model.Visualize();
+        }
+        public void SaveMethod()
+        {
+            SaveAs(SelectPath(), _model.GetCords());
         }
 
     }
